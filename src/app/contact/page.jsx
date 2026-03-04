@@ -105,8 +105,8 @@ const page = () => {
       <div className="contact-copy">
         <div className="contact-copy-bio">
           <Copy delay={1}>
-            <p className="caps sm">Wu Wei Studios</p>
-            <p className="caps sm">Toronto / Copenhagen</p>
+            <p className="caps sm">The Office Development</p>
+            <p className="caps sm">Amman, Jordan</p>
           </Copy>
         </div>
 
@@ -122,17 +122,9 @@ const page = () => {
         <div className="contact-copy-addresses">
           <div className="contact-address">
             <Copy delay={1.3}>
-              <p className="caps sm">Toronto</p>
-              <p className="caps sm">Studio 302, Richmond St W</p>
-              <p className="caps sm">M5V 3A8</p>
-            </Copy>
-          </div>
-
-          <div className="contact-address">
-            <Copy delay={1.45}>
-              <p className="caps sm">Copenhagen</p>
-              <p className="caps sm">Unit 02 Refshalevej 167A</p>
-              <p className="caps sm">1432 KØBENHAVN K</p>
+              <p className="caps sm">Amman</p>
+              <p className="caps sm">Jordan</p>
+              <p className="caps sm">By Appointment</p>
             </Copy>
           </div>
         </div>
@@ -140,7 +132,7 @@ const page = () => {
         <div className="contact-copy-links">
           <Copy delay={1.6}>
             <a href="/studio" onClick={(e) => handleNavigation(e, "/studio")}>
-              <p className="caps sm">Studio Overview</p>
+              <p className="caps sm">About Us</p>
             </a>
             <a href="/archive" onClick={(e) => handleNavigation(e, "/archive")}>
               <p className="caps sm">Project Archive</p>
@@ -156,14 +148,14 @@ const page = () => {
         <div className="fc-col-lg">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">Developed by Codegrid</p>
+              <p className="sm caps">Developed by The Office</p>
             </div>
           </div>
         </div>
         <div className="fc-col-sm">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">&copy; 2025 All Rights Reserved</p>
+              <p className="sm caps">&copy; 2026 All Rights Reserved</p>
             </div>
           </div>
         </div>

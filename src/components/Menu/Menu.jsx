@@ -326,7 +326,7 @@ const Menu = ({ onMenuStateChange }) => {
               >
                 <img
                   className="logo-img"
-                  src="/images/logos/logo_light.png"
+                  src="/images/logos/9.png"
                   alt=""
                 />
               </a>
@@ -391,7 +391,7 @@ const Menu = ({ onMenuStateChange }) => {
                   navigateTo("/studio");
                 }}
               >
-                <h1>studio,</h1>
+                <h1>about us,</h1>
               </a>
             </div>
             <div className="revealer">
@@ -420,7 +420,7 @@ const Menu = ({ onMenuStateChange }) => {
           <div className="menu-footer" ref={menuFooterColsRef}>
             <div className="menu-footer-col">
               <div className="revealer">
-                <p className="sm caps mono">&copy; 2025 All Rights Reserved</p>
+                <p className="sm caps mono">&copy; 2026 All Rights Reserved</p>
               </div>
             </div>
             <div className="menu-footer-col">
@@ -429,6 +429,8 @@ const Menu = ({ onMenuStateChange }) => {
                   <a
                     className="sm caps mono"
                     href="https://www.youtube.com/@codegrid"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     YouTube
                   </a>
@@ -436,13 +438,15 @@ const Menu = ({ onMenuStateChange }) => {
                 <div className="revealer">
                   <a
                     className="sm caps mono"
-                    href="https://www.instagram.com/codegridweb/"
+                    href="https://www.instagram.com/theoffice_dev/"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
                     Instagram
                   </a>
                 </div>
                 <div className="revealer">
-                  <a className="sm caps mono" href="https://x.com/codegridweb">
+                  <a className="sm caps mono" href="https://x.com/codegridweb" target="_blank" rel="noopener noreferrer">
                     X
                   </a>
                 </div>

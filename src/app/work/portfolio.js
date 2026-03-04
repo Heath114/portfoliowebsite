@@ -13,8 +13,8 @@ export const portfolio = [
         img: "/images/work/work_002.jpeg",
       },
       {
-        name: "Phase // 03",
-        tags: "art direction, identity",
+        name: "NewLook 2025",
+        tags: "web, design, creative direction, identity",
         img: "/images/work/work_003.jpeg",
       },
       {

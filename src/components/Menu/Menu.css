@@ -74,6 +74,10 @@
   cursor: pointer;
 }
 
+.nav-logo a {
+  display: inline-block;
+}
+
 img.logo-img {
   width: 2rem;
 }
@@ -160,6 +164,19 @@ img.logo-img {
   position: relative;
   width: max-content;
   clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .nav-logo a:hover,
+  .menu-overlay-items a:hover,
+  .menu-footer a:hover {
+    opacity: 0.65;
+  }
+
+  .nav-menu-toggle-open .revealer:hover p,
+  .menu-overlay-nav-toggle-close .revealer:hover p {
+    color: var(--foreground-200);
+  }
 }
 
 @media (max-width: 1000px) {

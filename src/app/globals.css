@@ -69,6 +69,18 @@ a {
 
 a {
   text-decoration: none;
+  transition: opacity 0.25s ease, color 0.25s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  a:hover {
+    opacity: 0.65;
+  }
+}
+
+a:focus-visible {
+  outline: 2px solid var(--btn-icon);
+  outline-offset: 0.2rem;
 }
 
 p.sm,

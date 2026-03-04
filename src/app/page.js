@@ -164,13 +164,13 @@ export default function Home() {
       )}
 
       <section className="hero">
-        <DynamicBackground logoPath="/images/logos/logo_light.png" />
+        <DynamicBackground logoPath="/images/logos/c.png" />
 
         <div className="hero-content">
           <div className="hero-header">
             <div className="hero-header-col-lg"></div>
             <div className="hero-header-col-sm">
-              <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
+              <Copy animateOnScroll={true} delay={showPreloader ? 6.2 : 0.9}>
                 <h3>
                   Systems thinking and creative execution brought into web
                   development for consistent outcomes.
@@ -182,8 +182,8 @@ export default function Home() {
           <div className="hero-footer">
             <div className="hero-footer-col-lg">
               <Copy animateOnScroll={false} delay={showPreloader ? 6.2 : 0.9}>
-                <p className="sm caps mono">Studios</p>
-                <p className="sm caps mono">Toronto and Copenhagen</p>
+                <p className="sm caps mono">The Office</p>
+                <p className="sm caps mono">Amman, Jordan</p>
               </Copy>
             </div>
             <div className="hero-footer-col-sm">

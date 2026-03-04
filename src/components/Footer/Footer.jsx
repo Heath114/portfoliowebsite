@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-social">
-            <a href="mailto:contact@codegrid.com">
+            <a href="mailto:hello@theofficedevelopment.com" target="_blank" rel="noopener noreferrer">
               <div className="footer-text">
                 <div className="footer-text-content">
                   <h2>Email</h2>
@@ -63,7 +63,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="footer-social">
-            <a href="https://www.youtube.com/@codegrid">
+            <a href="https://www.youtube.com/@codegrid" target="_blank" rel="noopener noreferrer">
               <div className="footer-text">
                 <div className="footer-text-content">
                   <h2>LinkedIn</h2>
@@ -71,29 +71,12 @@ const Footer = () => {
               </div>
             </a>
           </div>
+        
           <div className="footer-social">
-            <a href="https://www.youtube.com/@codegrid">
-              <div className="footer-text">
-                <div className="footer-text-content">
-                  <h2>Behance</h2>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div className="footer-social">
-            <a href="https://www.youtube.com/@codegrid">
+            <a href="https://www.instagram.com/theoffice_dev/" target="_blank" rel="noopener noreferrer">
               <div className="footer-text">
                 <div className="footer-text-content">
                   <h2>Instagram</h2>
-                </div>
-              </div>
-            </a>
-          </div>
-          <div className="footer-social">
-            <a href="https://vimeo.com/codegrid">
-              <div className="footer-text">
-                <div className="footer-text-content">
-                  <h2>Vimeo</h2>
                 </div>
               </div>
             </a>
@@ -105,14 +88,14 @@ const Footer = () => {
         <div className="fc-col-lg">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">Developed by Codegrid</p>
+              <p className="sm caps">Developed by The Office</p>
             </div>
           </div>
         </div>
         <div className="fc-col-sm">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">&copy; 2025 All Rights Reserved</p>
+              <p className="sm caps">&copy; 2026 All Rights Reserved</p>
             </div>
           </div>
         </div>
