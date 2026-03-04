@@ -27,6 +27,7 @@ const Menu = ({ onMenuStateChange }) => {
 
   const menuItemsRef = useRef(null);
   const menuFooterColsRef = useRef(null);
+  const menuTimelineRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -146,14 +147,14 @@ const Menu = ({ onMenuStateChange }) => {
   };
 
   const navigateTo = (path) => {
-    if (isAnimating) return;
+    if (menuTimelineRef.current?.vars?.id === "menu-closing") return;
 
     if (isExactPath(path)) {
-      closeMenu();
+      closeMenu(true);
       return;
     }
 
-    closeMenu();
+    closeMenu(true);
 
     setTimeout(() => {
       router.push(path, {
@@ -167,10 +168,14 @@ const Menu = ({ onMenuStateChange }) => {
 
     onMenuStateChange?.(true);
 
+    menuTimelineRef.current?.kill();
+
     setIsAnimating(true);
     const tl = gsap.timeline({
+      id: "menu-opening",
       onComplete: () => setIsAnimating(false),
     });
+    menuTimelineRef.current = tl;
 
     tl.to(menuBtnRef.current, {
       y: "-100%",
@@ -229,15 +234,22 @@ const Menu = ({ onMenuStateChange }) => {
     );
   };
 
-  const closeMenu = () => {
-    if (isAnimating) return;
+  const closeMenu = (force = false) => {
+    if (isAnimating && !force) return;
 
     onMenuStateChange?.(false);
 
+    menuTimelineRef.current?.kill();
+
     setIsAnimating(true);
     const tl = gsap.timeline({
-      onComplete: () => setIsAnimating(false),
+      id: "menu-closing",
+      onComplete: () => {
+        setIsAnimating(false);
+        menuTimelineRef.current = null;
+      },
     });
+    menuTimelineRef.current = tl;
 
     tl.to(closeBtnRef.current, {
       y: "-100%",
