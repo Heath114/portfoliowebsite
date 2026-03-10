@@ -1,5 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 
 import Menu from "@/components/Menu/Menu";
 
@@ -7,6 +8,8 @@ import { ReactLenis } from "lenis/react";
 
 export default function ClientLayout({ children }) {
   const [isMobile, setIsMobile] = useState(false);
+  const lenisRef = useRef(null);
+  const pathname = usePathname();
 
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 800px)");
@@ -25,6 +28,42 @@ export default function ClientLayout({ children }) {
     mediaQuery.addListener(handleChange);
     return () => mediaQuery.removeListener(handleChange);
   }, []);
+
+  useEffect(() => {
+    // Disable browser scroll restoration while the app is mounted.
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    return () => {
+      if ("scrollRestoration" in window.history) {
+        window.history.scrollRestoration = "auto";
+      }
+    };
+  }, []);
+
+  useEffect(() => {
+    // Force a fresh top scroll on every route change.
+    const resetScroll = () => {
+      const lenis = lenisRef.current?.lenis;
+      if (lenis) {
+        lenis.scrollTo(0, { immediate: true, force: true });
+      }
+
+      window.scrollTo(0, 0);
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+    };
+
+    resetScroll();
+    const raf = requestAnimationFrame(resetScroll);
+    const t1 = setTimeout(resetScroll, 120);
+
+    return () => {
+      cancelAnimationFrame(raf);
+      clearTimeout(t1);
+    };
+  }, [pathname]);
 
   const scrollSettings = isMobile
     ? {
@@ -68,7 +107,7 @@ export default function ClientLayout({ children }) {
   }
 
   return (
-    <ReactLenis root options={scrollSettings}>
+    <ReactLenis key={pathname} ref={lenisRef} root options={scrollSettings}>
       <>
         <Menu />
       </>

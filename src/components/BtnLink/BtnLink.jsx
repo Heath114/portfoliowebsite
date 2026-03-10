@@ -8,6 +8,12 @@ const BtnLink = ({ label, route, dark = false }) => {
   const router = useTransitionRouter();
   const isExternalRoute = /^(https?:\/\/|mailto:|tel:)/i.test(route);
 
+  const resetScrollTop = () => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
   function slideInOut() {
     document.documentElement.animate(
       [
@@ -50,8 +56,13 @@ const BtnLink = ({ label, route, dark = false }) => {
     if (isExternalRoute) return;
 
     e.preventDefault();
+    resetScrollTop();
     router.push(route, {
-      onTransitionReady: slideInOut,
+      onTransitionReady: () => {
+        slideInOut();
+        requestAnimationFrame(resetScrollTop);
+        setTimeout(resetScrollTop, 220);
+      },
     });
   };
 

@@ -1,6 +1,7 @@
 "use client";
 import "./sample-project.css";
 import { useRef } from "react";
+import { useTransitionRouter } from "next-view-transitions";
 
 import Copy from "@/components/Copy/Copy";
 import BtnLink from "@/components/BtnLink/BtnLink";
@@ -13,14 +14,79 @@ gsap.registerPlugin(ScrollTrigger);
 
 const page = () => {
   const sampleProjectRef = useRef(null);
+  const router = useTransitionRouter();
+
+  function slideInOut() {
+    document.documentElement.animate(
+      [
+        {
+          opacity: 1,
+          transform: "translateY(0) scale(1)",
+        },
+        {
+          opacity: 0.2,
+          transform: "translateY(-30%) scale(0.90)",
+        },
+      ],
+      {
+        duration: 1500,
+        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        fill: "forwards",
+        pseudoElement: "::view-transition-old(root)",
+      }
+    );
+
+    document.documentElement.animate(
+      [
+        {
+          clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+        },
+        {
+          clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+        },
+      ],
+      {
+        duration: 1500,
+        easing: "cubic-bezier(0.87, 0, 0.13, 1)",
+        fill: "forwards",
+        pseudoElement: "::view-transition-new(root)",
+      }
+    );
+  }
+
+  const handleProjectRoute = (e, route) => {
+    e.preventDefault();
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
+    router.push(route, {
+      onTransitionReady: () => {
+        slideInOut();
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        });
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }, 220);
+      },
+    });
+  };
 
   useGSAP(
     () => {
-      const imagesContainer = sampleProjectRef.current.querySelector(
-        ".sp-images-container"
-      );
       const progressContainer = sampleProjectRef.current.querySelector(
         ".sp-images-scroll-progress-container"
+      );
+      const projectImages = Array.from(
+        sampleProjectRef.current.querySelectorAll(".sp-images-container img")
+      );
+      const firstImage = sampleProjectRef.current.querySelector(
+        ".sp-images-container .sp-img:first-child"
       );
       const counter = sampleProjectRef.current.querySelector(
         "#sp-images-scroll-counter"
@@ -61,11 +127,16 @@ const page = () => {
       }
 
       ScrollTrigger.create({
-        trigger: imagesContainer,
-        start: "top bottom",
-        end: "bottom top",
+        trigger: sampleProjectRef.current,
+        start: "top top",
+        end: () => {
+          const scrollDistance =
+            sampleProjectRef.current.scrollHeight - window.innerHeight;
+          return `+=${Math.max(scrollDistance, 1)}`;
+        },
+        invalidateOnRefresh: true,
         onUpdate: (self) => {
-          const progress = Math.round(self.progress * 100);
+          const progress = Math.round(gsap.utils.clamp(0, 1, self.progress) * 100);
           counter.textContent = progress;
 
           const containerHeight = progressContainer.offsetHeight;
@@ -83,13 +154,55 @@ const page = () => {
         },
       });
 
+      if (firstImage) {
+        ScrollTrigger.create({
+          trigger: firstImage,
+          start: "top 85%",
+          onEnter: () => {
+            gsap.to(progressContainer, {
+              autoAlpha: 1,
+              clipPath: "polygon(0% 100%, 100% 100%, 100% 0%, 0% 0%)",
+              duration: 0.8,
+              ease: "power4.out",
+            });
+          },
+          onLeaveBack: () => {
+            gsap.to(progressContainer, {
+              autoAlpha: 0,
+              clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
+              duration: 0.45,
+              ease: "power3.out",
+            });
+          },
+        });
+      }
+
       gsap.set(progressContainer, {
         position: "fixed",
         top: "100vh",
         left: "1.5rem",
         right: "1.5rem",
-        width: "calc(100% - 3rem)",
+        autoAlpha: 0,
+        clipPath: "polygon(0% 100%, 100% 100%, 100% 100%, 0% 100%)",
       });
+
+      const refreshScrollMetrics = () => ScrollTrigger.refresh();
+
+      projectImages.forEach((img) => {
+        if (!img.complete) {
+          img.addEventListener("load", refreshScrollMetrics);
+          img.addEventListener("error", refreshScrollMetrics);
+        }
+      });
+
+      requestAnimationFrame(refreshScrollMetrics);
+
+      return () => {
+        projectImages.forEach((img) => {
+          img.removeEventListener("load", refreshScrollMetrics);
+          img.removeEventListener("error", refreshScrollMetrics);
+        });
+      };
     },
     { scope: sampleProjectRef }
   );
@@ -229,7 +342,12 @@ const page = () => {
           </Copy>
           <div className="sp-next-project-names">
             <Copy>
-              <h1>Hidden Signal</h1>
+              <a
+                href="/work/the-way-mobile"
+                onClick={(e) => handleProjectRoute(e, "/work/the-way-mobile")}
+              >
+                <h1>The Way Mobile</h1>
+              </a>
             </Copy>
           </div>
         </div>

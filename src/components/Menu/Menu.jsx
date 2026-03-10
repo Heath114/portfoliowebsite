@@ -133,6 +133,12 @@ const Menu = ({ onMenuStateChange }) => {
     );
   }
 
+  const resetScrollTop = () => {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  };
+
   const getExactPath = () => {
     if (typeof window !== "undefined") {
       return window.location.pathname;
@@ -154,10 +160,15 @@ const Menu = ({ onMenuStateChange }) => {
     }
 
     closeMenu();
+    resetScrollTop();
 
     setTimeout(() => {
       router.push(path, {
-        onTransitionReady: slideInOut,
+        onTransitionReady: () => {
+          slideInOut();
+          requestAnimationFrame(resetScrollTop);
+          setTimeout(resetScrollTop, 220);
+        },
       });
     }, 0);
   };
@@ -327,8 +338,13 @@ const Menu = ({ onMenuStateChange }) => {
                   e.preventDefault();
                   if (isExactPath("/")) return;
 
+                  resetScrollTop();
                   router.push("/", {
-                    onTransitionReady: slideInOut,
+                    onTransitionReady: () => {
+                      slideInOut();
+                      requestAnimationFrame(resetScrollTop);
+                      setTimeout(resetScrollTop, 220);
+                    },
                   });
                 }}
               >

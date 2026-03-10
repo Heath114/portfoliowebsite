@@ -56,8 +56,24 @@ const page = () => {
 
   const handleProjectRoute = (e, route) => {
     e.preventDefault();
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+
     router.push(route, {
-      onTransitionReady: slideInOut,
+      onTransitionReady: () => {
+        slideInOut();
+        requestAnimationFrame(() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        });
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          document.documentElement.scrollTop = 0;
+          document.body.scrollTop = 0;
+        }, 220);
+      },
     });
   };
 
