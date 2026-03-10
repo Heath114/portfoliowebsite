@@ -82,7 +82,7 @@ const WhoWeAre = () => {
       },
     });
 
-    images.forEach((img) => {
+    images.forEach((img) => { 
       ScrollTrigger.create({
         trigger: ".whoweare",
         start: "top top",
@@ -108,22 +108,6 @@ const WhoWeAre = () => {
         <div className="whoweare-scroll">
           <div className="whoweare-header">
             <h1>Who we are</h1>
-          </div>
-
-          <div className="whoweare-img" id="whoweare-img-1">
-            <img src="/images/who-we-are/team-1.jpg" alt="" />
-          </div>
-          <div className="whoweare-img" id="whoweare-img-2">
-            <img src="/images/who-we-are/team-2.jpg" alt="" />
-          </div>
-          <div className="whoweare-img" id="whoweare-img-3">
-            <img src="/images/who-we-are/team-3.jpg" alt="" />
-          </div>
-          <div className="whoweare-img" id="whoweare-img-4">
-            <img src="/images/who-we-are/team-4.jpg" alt="" />
-          </div>
-          <div className="whoweare-img" id="whoweare-img-5">
-            <img src="/images/who-we-are/team-5.jpg" alt="" />
           </div>
         </div>
       </div>

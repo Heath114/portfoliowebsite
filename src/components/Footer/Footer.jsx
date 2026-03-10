@@ -63,7 +63,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="footer-social">
-            <a href="https://www.youtube.com/@codegrid" target="_blank" rel="noopener noreferrer">
+            <a href="https://www.linkedin.com/" target="_blank" rel="noopener noreferrer">
               <div className="footer-text">
                 <div className="footer-text-content">
                   <h2>LinkedIn</h2>
@@ -88,7 +88,7 @@ const Footer = () => {
         <div className="fc-col-lg">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">Developed by The Office</p>
+              <p className="sm caps">Developed by The Office Development</p>
             </div>
           </div>
         </div>

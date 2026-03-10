@@ -6,7 +6,7 @@ import { ViewTransitions } from "next-view-transitions";
 
 export const metadata = {
   title: "The Office Development",
-  description: "The Office Development — Web Design & Development Agency in Amman, Jordan",
+  description: "The Office Development, Web Design & Development Agency in Amman, Jordan",
 };
 
 export default function RootLayout({ children }) {

@@ -15,7 +15,7 @@ const ProcessCards = () => {
       label: "(About the principles)",
       image: "/images/process/process_001.jpeg",
       description:
-        "We design with restraint and intention. Every decision is shaped by a set of values—clarity, structure, and calm execution.",
+        "We design with restraint and intention. Every decision is shaped by a set of values, clarity, structure, and calm execution.",
     },
     {
       index: "02",
@@ -64,7 +64,7 @@ const ProcessCards = () => {
         if (index < processCards.length - 1) {
           ScrollTrigger.create({
             trigger: processCards[index + 1],
-            start: "top bottom",
+            start: "top 75%",
             end: "top top",
             onUpdate: (self) => {
               const progress = self.progress;

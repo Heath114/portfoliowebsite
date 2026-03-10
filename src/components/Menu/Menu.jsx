@@ -27,7 +27,6 @@ const Menu = ({ onMenuStateChange }) => {
 
   const menuItemsRef = useRef(null);
   const menuFooterColsRef = useRef(null);
-  const menuTimelineRef = useRef(null);
 
   useEffect(() => {
     if (typeof window !== "undefined") {
@@ -147,14 +146,14 @@ const Menu = ({ onMenuStateChange }) => {
   };
 
   const navigateTo = (path) => {
-    if (menuTimelineRef.current?.vars?.id === "menu-closing") return;
+    if (isAnimating) return;
 
     if (isExactPath(path)) {
-      closeMenu(true);
+      closeMenu();
       return;
     }
 
-    closeMenu(true);
+    closeMenu();
 
     setTimeout(() => {
       router.push(path, {
@@ -168,14 +167,17 @@ const Menu = ({ onMenuStateChange }) => {
 
     onMenuStateChange?.(true);
 
-    menuTimelineRef.current?.kill();
-
     setIsAnimating(true);
+    let unlocked = false;
+    const unlockInteractions = () => {
+      if (unlocked) return;
+      unlocked = true;
+      setIsAnimating(false);
+    };
+
     const tl = gsap.timeline({
-      id: "menu-opening",
-      onComplete: () => setIsAnimating(false),
+      onComplete: unlockInteractions,
     });
-    menuTimelineRef.current = tl;
 
     tl.to(menuBtnRef.current, {
       y: "-100%",
@@ -195,6 +197,7 @@ const Menu = ({ onMenuStateChange }) => {
         ease: "power3.out",
         onStart: () => {
           menuOverlayRef.current.style.pointerEvents = "all";
+          unlockInteractions();
         },
       },
       "-=0.45"
@@ -215,7 +218,7 @@ const Menu = ({ onMenuStateChange }) => {
       {
         y: "0%",
         duration: 1,
-        stagger: 0.075,
+        stagger: 0.04,
         ease: "power3.out",
       },
       "<"
@@ -226,30 +229,23 @@ const Menu = ({ onMenuStateChange }) => {
       {
         y: "0%",
         duration: 1,
-        stagger: 0.1,
+        stagger: 0.04,
         ease: "power3.out",
-        delay: 0.5,
+        delay: 0,
       },
       "<"
     );
   };
 
-  const closeMenu = (force = false) => {
-    if (isAnimating && !force) return;
+  const closeMenu = () => {
+    if (isAnimating) return;
 
     onMenuStateChange?.(false);
 
-    menuTimelineRef.current?.kill();
-
     setIsAnimating(true);
     const tl = gsap.timeline({
-      id: "menu-closing",
-      onComplete: () => {
-        setIsAnimating(false);
-        menuTimelineRef.current = null;
-      },
+      onComplete: () => setIsAnimating(false),
     });
-    menuTimelineRef.current = tl;
 
     tl.to(closeBtnRef.current, {
       y: "-100%",
@@ -338,7 +334,7 @@ const Menu = ({ onMenuStateChange }) => {
               >
                 <img
                   className="logo-img"
-                  src="/images/logos/9.png"
+                  src="/images/logos/c.png"
                   alt=""
                 />
               </a>
@@ -381,7 +377,7 @@ const Menu = ({ onMenuStateChange }) => {
                   navigateTo("/");
                 }}
               >
-                <h1>index,</h1>
+                <h1>home,</h1>
               </a>
             </div>
             <div className="revealer">

@@ -177,7 +177,7 @@ const DynamicBackground = ({ logoPath = "/images/logos/logo_light.png" }) => {
 
         tempCtx.clearRect(0, 0, CONFIG.logoSize, CONFIG.logoSize);
 
-        const scale = 0.9;
+        const scale = 0.7;
         const scaledSize = CONFIG.logoSize * scale;
         const offset = (CONFIG.logoSize - scaledSize) / 2;
 

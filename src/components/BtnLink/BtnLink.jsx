@@ -6,6 +6,7 @@ import "./BtnLink.css";
 
 const BtnLink = ({ label, route, dark = false }) => {
   const router = useTransitionRouter();
+  const isExternalRoute = /^(https?:\/\/|mailto:|tel:)/i.test(route);
 
   function slideInOut() {
     document.documentElement.animate(
@@ -46,6 +47,8 @@ const BtnLink = ({ label, route, dark = false }) => {
   }
 
   const handleClick = (e) => {
+    if (isExternalRoute) return;
+
     e.preventDefault();
     router.push(route, {
       onTransitionReady: slideInOut,
@@ -57,6 +60,8 @@ const BtnLink = ({ label, route, dark = false }) => {
       className={`sm caps mono ${dark ? "link-dark" : "link-light"}`}
       href={route}
       onClick={handleClick}
+      target={isExternalRoute ? "_blank" : undefined}
+      rel={isExternalRoute ? "noopener noreferrer" : undefined}
     >
       <div
         className={`anime-link ${

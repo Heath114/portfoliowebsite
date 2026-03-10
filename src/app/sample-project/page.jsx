@@ -148,7 +148,7 @@ const page = () => {
                   temporal loops. Built with a modular design system, the
                   visuals pulse and stretch to reflect the elasticity of time in
                   digital environments. The concept embraces minimal forms with
-                  high contrast dynamics to suggest an ongoing shift — folding
+                  high contrast dynamics to suggest an ongoing shift, folding
                   the present into an abstract continuum.
                 </p>
                 <br />
@@ -156,7 +156,7 @@ const page = () => {
                   Designed as a speculative identity for a non-linear brand
                   system, this piece operates both as a visual experiment and a
                   creative prompt. Every frame is composed to highlight rhythm,
-                  silence, and distortion — aimed at evoking a subtle tension
+                  silence, and distortion, aimed at evoking a subtle tension
                   between chaos and control.
                 </p>
               </Copy>

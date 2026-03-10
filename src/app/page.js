@@ -14,18 +14,27 @@ import CustomEase from "gsap/CustomEase";
 gsap.registerPlugin(ScrollTrigger, CustomEase);
 CustomEase.create("hop", "0.9, 0, 0.1, 1");
 
-let isInitialLoad = true;
+const PRELOADER_SESSION_KEY = "wuwei-home-preloader-played";
 
 export default function Home() {
-  const [showPreloader, setShowPreloader] = useState(isInitialLoad);
+  const [showPreloader, setShowPreloader] = useState(false);
+  const [hasCheckedPreloader, setHasCheckedPreloader] = useState(false);
 
   useEffect(() => {
-    return () => {
-      isInitialLoad = false;
-    };
+    const hasPlayedPreloader =
+      window.sessionStorage.getItem(PRELOADER_SESSION_KEY) === "true";
+
+    if (!hasPlayedPreloader) {
+      setShowPreloader(true);
+      window.sessionStorage.setItem(PRELOADER_SESSION_KEY, "true");
+    }
+
+    setHasCheckedPreloader(true);
   }, []);
 
   useGSAP(() => {
+    if (!hasCheckedPreloader) return;
+
     const heroLink = document.querySelector(".hero-link");
     const animationDelay = showPreloader ? 6.2 : 0.9;
 
@@ -111,7 +120,9 @@ export default function Home() {
         ease: "power4.out",
       });
     }
-  }, [showPreloader]);
+  }, [showPreloader, hasCheckedPreloader]);
+
+  if (!hasCheckedPreloader) return null;
 
   return (
     <>

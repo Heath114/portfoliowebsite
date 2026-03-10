@@ -1,6 +1,6 @@
 .whoweare {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100svh;
   background-color: var(--background);
   overflow: hidden;
@@ -8,7 +8,7 @@
 
 .whoweare-container {
   position: relative;
-  width: 100vw;
+  width: 100%;
   height: 100svh;
   background-color: var(--foreground);
   clip-path: circle(0% at 50% 50%);

@@ -18,6 +18,11 @@ const Archive = () => {
     const imagesPerRow = isMobile ? 30 : 60;
     const totalImages = totalRows * imagesPerRow;
     const images = [];
+    const featuredProjectImages = [
+      "/images/work/borvyn/1.webp",
+      "/images/work/newlook/ss.webp",
+      "/images/work/The Way Mobile/main.png",
+    ];
 
     function getRandomHeight(min, max) {
       return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -36,8 +41,12 @@ const Archive = () => {
       }
 
       const imgElement = document.createElement("img");
-      const randomImageNumber = Math.floor(Math.random() * 50) + 1;
-      imgElement.src = `/images/archive/img${randomImageNumber}.jpeg`;
+      if (i < featuredProjectImages.length) {
+        imgElement.src = featuredProjectImages[i];
+      } else {
+        const randomImageNumber = Math.floor(Math.random() * 50) + 1;
+        imgElement.src = `/images/archive/img${randomImageNumber}.jpeg`;
+      }
       img.appendChild(imgElement);
 
       gallery.appendChild(img);

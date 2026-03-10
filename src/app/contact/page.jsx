@@ -3,6 +3,7 @@ import "./contact.css";
 import { useRef } from "react";
 
 import Copy from "@/components/Copy/Copy";
+import BtnLink from "@/components/BtnLink/BtnLink";
 
 import { useTransitionRouter } from "next-view-transitions";
 import gsap from "gsap";
@@ -131,6 +132,20 @@ const page = () => {
 
         <div className="contact-copy-links">
           <Copy delay={1.6}>
+            <a
+              href="https://www.linkedin.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="caps sm">LinkedIn</p>
+            </a>
+            <a
+              href="https://www.instagram.com/theoffice_dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <p className="caps sm">Instagram DM</p>
+            </a>
             <a href="/studio" onClick={(e) => handleNavigation(e, "/studio")}>
               <p className="caps sm">About Us</p>
             </a>
@@ -142,13 +157,22 @@ const page = () => {
             </a>
           </Copy>
         </div>
+
+        <div className="contact-cta">
+          <div className="contact-cta-wrapper">
+            <BtnLink
+              route="mailto:hello@theofficedevelopment.com"
+              label="Reach Us via Email"
+            />
+          </div>
+        </div>
       </div>
 
       <div className="contact-footer">
         <div className="fc-col-lg">
           <div className="footer-text">
             <div className="footer-text-content">
-              <p className="sm caps">Developed by The Office</p>
+              <p className="sm caps">Developed by The Office Development</p>
             </div>
           </div>
         </div>

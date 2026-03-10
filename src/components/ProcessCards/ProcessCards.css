@@ -7,8 +7,9 @@
 
 .process-card {
   position: relative;
-  width: 100vw;
-  height: 100svh;
+  width: 100%;
+  min-height: 120svh;
+  height: auto;
   background-color: var(--foreground);
   color: var(--background);
   padding: 1.5rem;
@@ -43,10 +44,10 @@
 }
 
 .process-card-content-wrapper {
-  width: 75%;
+  width: min(75%, 980px);
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .process-card-header {
@@ -54,12 +55,15 @@
 }
 
 .process-card-img img {
-  aspect-ratio: 5/3;
+  aspect-ratio: 16/9;
+  max-height: 42svh;
+  object-fit: cover;
 }
 
 .process-card-copy {
   display: flex;
-  gap: 1.5rem;
+  gap: 2rem;
+  align-items: flex-start;
 }
 
 .process-card-copy-title {
@@ -68,6 +72,17 @@
 
 .process-card-copy-description {
   flex: 4;
+  max-width: 60ch;
+}
+
+.process-card-copy-title p {
+  opacity: 0.75;
+}
+
+.process-card-copy-description p {
+  line-height: 1.45;
+  -webkit-font-smoothing: antialiased;
+  text-wrap: pretty;
 }
 
 @media (max-width: 1000px) {
@@ -85,6 +100,11 @@
 
   .process-card-copy {
     gap: 0.5rem;
+  }
+
+  .process-card-img img {
+    max-height: none;
+    aspect-ratio: 5/3;
   }
 
   .process-card-index {

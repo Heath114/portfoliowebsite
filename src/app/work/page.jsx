@@ -15,6 +15,7 @@ gsap.registerPlugin(ScrollTrigger);
 
 const page = () => {
   const workRef = useRef(null);
+  const workContainerRefs = useRef([]);
   const router = useTransitionRouter();
 
   function slideInOut() {
@@ -55,9 +56,23 @@ const page = () => {
     );
   }
 
-  const navigateToProject = () => {
-    router.push("/sample-project", {
+  const navigateToProject = (route = "/sample-project") => {
+    router.push(route, {
       onTransitionReady: slideInOut,
+    });
+  };
+
+  const scrollToYear = (yearIndex) => {
+    const target = workContainerRefs.current[yearIndex];
+    if (!target) return;
+
+    const navOffset = window.innerWidth <= 1000 ? 90 : 120;
+    const top =
+      target.getBoundingClientRect().top + window.scrollY - navOffset;
+
+    window.scrollTo({
+      top: Math.max(0, top),
+      behavior: "smooth",
     });
   };
 
@@ -209,6 +224,15 @@ const page = () => {
             <div
               key={yearIndex}
               className={`year-index year-index-var-${(yearIndex % 3) + 1}`}
+              onClick={() => scrollToYear(yearIndex)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === "Enter" || e.key === " ") {
+                  e.preventDefault();
+                  scrollToYear(yearIndex);
+                }
+              }}
             >
               <Copy delay={0.85}>
                 <p className="sm">{yearData.year.slice(-2)}</p>
@@ -220,7 +244,13 @@ const page = () => {
         <div className="work-sidebar"></div>
         <div className="work-main">
           {portfolio.map((yearData, yearIndex) => (
-            <div key={yearIndex} className="work-container">
+            <div
+              key={yearIndex}
+              className="work-container"
+              ref={(el) => {
+                workContainerRefs.current[yearIndex] = el;
+              }}
+            >
               <div className="work-year-container">
                 <Copy delay={0.85} animateOnScroll={false}>
                   <h1 className="work-year">'{yearData.year.slice(-2)}</h1>
@@ -231,7 +261,7 @@ const page = () => {
                   <div
                     key={projectIndex}
                     className="work-project"
-                    onClick={navigateToProject}
+                    onClick={() => navigateToProject(project.route)}
                     style={{ cursor: "pointer" }}
                   >
                     <div className="work-project-img">

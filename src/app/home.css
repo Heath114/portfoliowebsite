@@ -52,6 +52,12 @@
   flex-shrink: 0;
 }
 
+.hero-tags p {
+  font-weight: 700;
+  color: white;
+  font-size: 0.875rem;
+}
+
 .preloader-overlay {
   position: fixed;
   top: 0;

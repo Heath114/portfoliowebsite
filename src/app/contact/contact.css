@@ -31,6 +31,37 @@
   gap: 3rem;
 }
 
+.contact-copy .caps {
+  word-spacing: 0.12em;
+}
+
+.contact-copy-links .caps {
+  word-spacing: 0.18em;
+}
+
+.contact [data-copy-wrapper] {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-copy-links [data-copy-wrapper] {
+  gap: 0.75rem;
+}
+
+.contact-cta {
+  margin-top: 0.5rem;
+}
+
+.contact-cta-wrapper {
+  width: fit-content;
+}
+
+.contact p,
+.contact a {
+  line-height: 1.2;
+}
+
 .contact-copy-addresses {
   position: relative;
   left: 20%;

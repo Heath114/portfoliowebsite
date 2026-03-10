@@ -23,7 +23,7 @@
 }
 
 body {
-  font-family: "nm";
+  font-family: "nm", "Helvetica Neue", Arial, sans-serif;
   background-color: #000;
 }
 
@@ -100,7 +100,8 @@ a.caps {
 
 p.caps.mono,
 a.caps.mono {
-  font-family: "DM Mono";
+  font-family: "DM Mono", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas,
+    "Liberation Mono", monospace;
   font-weight: 600;
   -webkit-font-smoothing: antialiased;
 }

@@ -2,7 +2,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100svh;
   pointer-events: none;
   z-index: 10000;
@@ -23,7 +23,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: auto;
   z-index: 1000;
   mix-blend-mode: difference;
@@ -33,7 +33,7 @@
 .nav {
   pointer-events: all;
   position: relative;
-  width: 100vw;
+  width: 100%;
   padding: 1.5rem;
   display: flex;
   gap: 1.5rem;
@@ -74,6 +74,12 @@
   cursor: pointer;
 }
 
+.nav-menu-toggle-open .revealer p {
+  font-weight: 700;
+  color: white;
+  font-size: 0.875rem;
+}
+
 .nav-logo a {
   display: inline-block;
 }
@@ -86,7 +92,7 @@ img.logo-img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   height: 100svh;
   overflow: hidden;
   background-color: var(--background-200);
@@ -100,7 +106,7 @@ img.logo-img {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100vw;
+  width: 100%;
   padding: 1.5rem;
   display: flex;
   gap: 1.5rem;
@@ -175,7 +181,8 @@ img.logo-img {
 
   .nav-menu-toggle-open .revealer:hover p,
   .menu-overlay-nav-toggle-close .revealer:hover p {
-    color: var(--foreground-200);
+    opacity: 0.5;
+    transition: opacity 0.3s ease;
   }
 }
 
