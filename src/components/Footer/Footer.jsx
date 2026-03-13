@@ -54,7 +54,7 @@ const Footer = () => {
             </div>
           </div>
           <div className="footer-social">
-            <a href="mailto:hello@theofficedevelopment.com" target="_blank" rel="noopener noreferrer">
+            <a href="mailto:info@theoffice.it.com" target="_blank" rel="noopener noreferrer">
               <div className="footer-text">
                 <div className="footer-text-content">
                   <h2>Email</h2>

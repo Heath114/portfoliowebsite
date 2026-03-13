@@ -67,7 +67,8 @@
   overflow: hidden;
   z-index: 10000000;
   background-color: var(--background-200);
-  pointer-events: none;
+  pointer-events: auto;
+  cursor: default;
 }
 
 .progress-bar {

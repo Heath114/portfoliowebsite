@@ -161,7 +161,7 @@ const page = () => {
         <div className="contact-cta">
           <div className="contact-cta-wrapper">
             <BtnLink
-              route="mailto:hello@theofficedevelopment.com"
+              route="mailto:info@theoffice.it.com"
               label="Reach Us via Email"
             />
           </div>
